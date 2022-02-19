@@ -3,5 +3,5 @@ opencv-python
 matplotlib
 Cython
 
-git+https://github.com/adrianc-a/tf-slim.git@remove_contrib
-git+https://github.com/liruilong940607/OCHumanApi
+#git+https://github.com/adrianc-a/tf-slim.git@remove_contrib
+#git+https://github.com/liruilong940607/OCHumanApi
