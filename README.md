@@ -51,3 +51,6 @@ At first, we attempted to create and design our own keypoints algorithm from scr
 ## What's next for BackBuddy
 
 For future goals, we want to implement live camera streaming to judge their level of deadlift. We have attempted to add a live camera, but due to the time restraint we were not able to successfully work it into our program. We also want to add logistic regression to rate the deadlift for a more accurate classification system to better the users deadlift to ensure the greatest level of safety for the athlete.
+
+## Using The GUI
+
