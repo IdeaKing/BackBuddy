@@ -3,6 +3,7 @@ import os
 from zipfile import ZipFile
 
 import cv2
+import time
 import gdown
 import numpy as np
 import tensorflow as tf
@@ -12,7 +13,7 @@ from src.gui.gui import gui_args
 from src.linearReg import Accuracy
 
 
-PATH_TO_VIDEO = "images/videoplayback_Trim.mp4"
+# PATH_TO_VIDEO = "images/videoplayback_Trim.mp4"
 
 
 if __name__ == "__main__":
@@ -39,7 +40,7 @@ if __name__ == "__main__":
         target_size=IMAGE_SHAPE)
     
     # Start the GUI
-    # args = gui_args()
+    args = gui_args()
 
     """
     print("Camera Number: ", args.camera_number)
@@ -62,25 +63,55 @@ if __name__ == "__main__":
     """
 
     # Read Image
-    
+    PATH_TO_VIDEO = args.Video_File
+    print(PATH_TO_VIDEO)
     cap = cv2.VideoCapture(PATH_TO_VIDEO) # args.video_file)
-    while(cap.isOpened()):
+
+    frame_up  = None
+    avg_acc = 0
+    counter = 0
+
+    while cap.isOpened():
         ret, frame = cap.read()
-        if ret == True:
-            frame = cv2.resize(
-                frame, (256, 256), fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA
-            )
-            humans = e.inference(
-                frame, 
-                resize_to_default=(IMAGE_SHAPE[0] > 0 and IMAGE_SHAPE[1] > 0), 
-                upsample_size=4
-            )
-            print(humans)
-            acc = Accuracy(humans)
-            print(acc)
+        try:
+            if frame == None:
+                break
+        except:
+            pass
+        image = cv2.resize(
+            frame, (256, 256), fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA
+        )
+        humans, humans_full = e.inference(
+            image, 
+            resize_to_default=(IMAGE_SHAPE[0] > 0 and IMAGE_SHAPE[1] > 0), 
+            upsample_size=4
+        )
+        # print(humans)
+        try:
+            avg_acc = avg_acc + Accuracy(humans)
+        except:
+            None # avg_acc = 0.00
+        # print(acc)
 
-            ## TODO
-            ## work on display video
-            ## overlay accuracy on video
+        # print(frame)
 
+        ## TODO
+        ## work on display video
+        frame_up = e.draw_humans(frame, humans_full)
+        ## overlay accuracy on video
+
+        # sprint(frame)
+
+        cv2.imshow('tf-pose-estimation result', frame_up)
+        if cv2.waitKey(1) == 27:
+            break
+        counter = counter + 1
+
+    avg_acc = avg_acc / counter
+    print(avg_acc)
+    cv2.putText(frame_up, "Form Accuracy: " + str(avg_acc), (0, frame_up.shape[0]-30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+    cv2.imshow('tf-pose-estimation result', frame_up)
+    cv2.waitKey()
+    # cv2.destroyAllWindows()
+    
 

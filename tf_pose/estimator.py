@@ -282,9 +282,11 @@ class PoseEstimator:
         pafprocess.process_paf(peaks, heat_mat, paf_mat)
 
         human = []
+
+        humans = []
         for human_id in range(pafprocess.get_num_humans()):
             is_added = False
-
+            human_full = Human([])
             for part_idx in range(18):
                 c_idx = int(pafprocess.get_part_cid(human_id, part_idx))
                 # if c_idx < 0:
@@ -299,6 +301,14 @@ class PoseEstimator:
                         pafprocess.get_part_score(c_idx)
                     )
                 )
+                human_full.body_parts[part_idx] = BodyPart(
+                        '%d-%d' % (human_id, part_idx), part_idx,
+                        float(pafprocess.get_part_x(c_idx)) / heat_mat.shape[1],
+                        float(pafprocess.get_part_y(c_idx)) / heat_mat.shape[0],
+                        pafprocess.get_part_score(c_idx)
+                    )
+                humans.append(human_full)
+                
 
             
             # if is_added:
@@ -306,7 +316,7 @@ class PoseEstimator:
             # human.score = score
             break
             
-        return human
+        return human, humans
 
 
 class TfPoseEstimator:
@@ -416,36 +426,43 @@ class TfPoseEstimator:
 
     @staticmethod
     def draw_humans(npimg, humans, imgcopy=False):
-        if imgcopy:
-            npimg = np.copy(npimg)
-        image_h, image_w = npimg.shape[:2]
-        centers = {}
-        for human in humans:
-            # draw point
-            for i in range(common.CocoPart.Background.value):
-                if i not in human.body_parts.keys():
-                    continue
-
-                body_part = human.body_parts[i]
-                center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
-                centers[i] = center
-                cv2.circle(npimg, center, 3, common.CocoColors[i], thickness=3, lineType=8, shift=0)
+        try:
+            if imgcopy:
+                npimg = np.copy(npimg)
+            image_h, image_w = npimg.shape[:2]
+            centers = {}
+            for human in humans:
+                # draw point
                 
-                """
-                import matplotlib.pyplot as plt
-                plt.imshow(npimg)
-                plt.show()
-                """
 
+                for i in range(common.CocoPart.Background.value):
+                    # if i not in human.body_parts.keys():
+                    #     continue
+
+                    body_part = human.body_parts[i]
+                    if body_part.x == 0 and body_part.y == 0:
+                        continue
+                    center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
+                    centers[i] = center
+                    cv2.circle(npimg, center, 3, common.CocoColors[i], thickness=3, lineType=8, shift=0)
+                    """
+                    import matplotlib.pyplot as plt
+                    plt.imshow(npimg)
+                    plt.show()
+                    """
+        except:
+            pass
             
-            # draw line
+        # draw line
+        try:
             for pair_order, pair in enumerate(common.CocoPairsRender):
                 if pair[0] not in human.body_parts.keys() or pair[1] not in human.body_parts.keys():
                     continue
-
-                # npimg = cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
-                cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
-            
+                if centers[pair[0]] == 0 and centers[pair[1]] == 0:
+                    continue
+                cv2.line(npimg, centers[pair[0]], centers[pair[1]], (255, 0, 0), 3)
+        except:
+            pass
         return npimg
 
     def _get_scaled_img(self, npimg, scale):
@@ -578,9 +595,9 @@ class TfPoseEstimator:
         #    self.heatMat.shape[1], self.heatMat.shape[0], self.pafMat.shape[1], self.pafMat.shape[0]))
 
         t = time.time()
-        humans = PoseEstimator.estimate_paf(peaks, self.heatMat, self.pafMat)
+        humans, humans_full = PoseEstimator.estimate_paf(peaks, self.heatMat, self.pafMat)
         # # logger.debug('estimate time=%.5f' % (time.time() - t))
-        return humans
+        return humans, humans_full
 
 
 if __name__ == '__main__':

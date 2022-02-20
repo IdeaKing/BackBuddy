@@ -5,14 +5,14 @@ import cv2
     dump_build_config = False,
     auto_start=False,
     default_size=(1000, 1000),
-    program_name = "BackBuddies Trainer Analysis Program",
-    image_dir="docs") # BackBuddiesLogo.png")
+    program_name = "BackBuddy Trainer Analysis Program"
+)
 def gui_args():
     parser = GooeyParser(
         description = "Your Personal Trainer")
-    parser_group = parser.add_argument_group(
-        "Select files")
-    parser_group.add_argument(
+    # parser_group = parser.add_argument_group(
+    #     "Select-files")
+    parser.add_argument(
         "--Video-File",
          "-v",
          help = "Path to the input file with video.", 

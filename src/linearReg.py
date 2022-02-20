@@ -13,8 +13,8 @@ def Accuracy(input):
     #x1 =  str(df[5][0])[2:6]
     #y1 =  str(df[5][0])[7:11]
     #input = 0.44
-    print("left hand x: ", leftHandx)
-    print("left foot x: ", leftFootx)
+    #print("left hand x: ", leftHandx)
+    #print("left foot x: ", leftFootx)
     diff = abs(float(leftHandx)-float(leftFootx))
     if (float(leftFootx) == 0):
         return 0
