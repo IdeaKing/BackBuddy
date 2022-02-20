@@ -15,16 +15,11 @@ def Accuracy(input):
     #input = 0.44
     print("left hand x: ", leftHandx)
     print("left foot x: ", leftFootx)
-    if (float(leftHandx) == 0 or float(leftFootx)) == 0:
-        print("enter")
-        return 0.00
-    if float(leftHandx) > float(leftFootx):
-        leftHandx = 1 - float(leftHandx) 
-    try: 
-        accuracy = float(leftHandx)/float(leftFootx)
+    diff = abs(float(leftHandx)-float(leftFootx))
+    if (float(leftFootx) == 0):
+        return 0
+    accuracy = 1 - (diff/float(leftFootx))
     # print("accuracy: ", accuracy)
-    except:
-        accuracy = 0
     return accuracy
     #accuracy = abs(input/float(y1))
     #print("accuracy:", accuracy)

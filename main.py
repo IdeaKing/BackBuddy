@@ -79,4 +79,8 @@ if __name__ == "__main__":
             acc = Accuracy(humans)
             print(acc)
 
+            ## TODO
+            ## work on display video
+            ## overlay accuracy on video
+
 
