@@ -12,7 +12,7 @@ BackBuddy is a simple GUI application that takes an input video from a user, and
 Using the program is easy! Simply select your video and hit the "Start" button.
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/IdeaKing/BackBuddy/blob/main/docs/GUI.png">
+  <img src="https://github.com/IdeaKing/BackBuddy/blob/main/docs/GUI.png">
 </p>
 
 ## Installing BackBuddy
