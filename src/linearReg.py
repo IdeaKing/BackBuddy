@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
 import cython
 
-input = ["(0.48 0.70)", "(0.13 0.66)", "(0.52 0.66)", "(0.48 0.20)", "(0.18 0.66)", "(0.14 0.80)", "(0.20 0.66)", "(0.48 0.66)", "(0.50 0.66)", "(0.13 0.66)", "(0.60 0.66)", "(0.12 0.66)", "(0.11 0.66)"]
+# input = ["(0.48 0.70)", "(0.13 0.66)", "(0.52 0.66)", "(0.48 0.20)", "(0.18 0.66)", "(0.14 0.80)", "(0.20 0.66)", "(0.48 0.66)", "(0.50 0.66)", "(0.13 0.66)", "(0.60 0.66)", "(0.12 0.66)", "(0.11 0.66)"]
 def Accuracy(input):
     leftHandx = str(input[4])[2:6]
     leftFootx = str(input[10])[2:6]
@@ -13,8 +13,18 @@ def Accuracy(input):
     #x1 =  str(df[5][0])[2:6]
     #y1 =  str(df[5][0])[7:11]
     #input = 0.44
-    accuracy = abs(float(leftHandx)/float(leftFootx))
-    print("accuracy: ", accuracy)
+    print("left hand x: ", leftHandx)
+    print("left foot x: ", leftFootx)
+    if (float(leftHandx) == 0 or float(leftFootx)) == 0:
+        print("enter")
+        return 0.00
+    if float(leftHandx) > float(leftFootx):
+        leftHandx = 1 - float(leftHandx) 
+    try: 
+        accuracy = float(leftHandx)/float(leftFootx)
+    # print("accuracy: ", accuracy)
+    except:
+        accuracy = 0
     return accuracy
     #accuracy = abs(input/float(y1))
     #print("accuracy:", accuracy)

@@ -15,6 +15,7 @@ scikit-image
 scipy
 slidingwindow
 tqdm
+pandas
 git+https://github.com/ppwwyyxx/tensorpack.git
 git+https://github.com/adrianc-a/tf-slim.git@remove_contrib
 numpy==1.22.2

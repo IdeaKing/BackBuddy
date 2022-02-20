@@ -262,7 +262,13 @@ class BodyPart:
 
     def __str__(self):
         # return 'BodyPart:%d-(%.2f, %.2f) score=%.2f' % (self.part_idx, self.x, self.y, self.score)
-        return ', (%.2f %.2f)' % (self.x, self.y)
+        self.x = float(self.x)
+        self.y = float(self.y)
+        if abs(self.x) > 1000:
+            self.x = 0.00
+        if abs(self.y) > 1000:
+            self.y = 0.00
+        return '(%.2f %.2f)' % (self.x, self.y)
     def __repr__(self):
         return self.__str__()
 

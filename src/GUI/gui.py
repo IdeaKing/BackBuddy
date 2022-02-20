@@ -5,8 +5,8 @@ import cv2
     dump_build_config = False,
     auto_start=False,
     default_size=(1000, 1000),
-    program_name = "BackBuddies Trainer Analysis Program",)
-    #image_dir="")
+    program_name = "BackBuddies Trainer Analysis Program",
+    image_dir="docs") # BackBuddiesLogo.png")
 def gui_args():
     parser = GooeyParser(
         description = "Your Personal Trainer")

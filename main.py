@@ -9,6 +9,11 @@ import tensorflow as tf
 
 from tf_pose.estimator import TfPoseEstimator
 from src.gui.gui import gui_args
+from src.linearReg import Accuracy
+
+
+PATH_TO_VIDEO = "images/videoplayback_Trim.mp4"
+
 
 if __name__ == "__main__":
     # Global parameters
@@ -34,7 +39,7 @@ if __name__ == "__main__":
         target_size=IMAGE_SHAPE)
     
     # Start the GUI
-    args = gui_args()
+    # args = gui_args()
 
     """
     print("Camera Number: ", args.camera_number)
@@ -54,4 +59,24 @@ if __name__ == "__main__":
                 upsample_size=4
             )
             print(humans)   
-    """         
+    """
+
+    # Read Image
+    
+    cap = cv2.VideoCapture(PATH_TO_VIDEO) # args.video_file)
+    while(cap.isOpened()):
+        ret, frame = cap.read()
+        if ret == True:
+            frame = cv2.resize(
+                frame, (256, 256), fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA
+            )
+            humans = e.inference(
+                frame, 
+                resize_to_default=(IMAGE_SHAPE[0] > 0 and IMAGE_SHAPE[1] > 0), 
+                upsample_size=4
+            )
+            print(humans)
+            acc = Accuracy(humans)
+            print(acc)
+
+
