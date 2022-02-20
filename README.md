@@ -4,6 +4,9 @@
   <img src="https://github.com/IdeaKing/BlairHacks/blob/main/docs/BackBuddyLogo.png">
 </p>
 
+## What it does
+BackBuddy is a simple GUI application that takes an input video from a user, and passes it to an AI algorithm. This algorithm is a keypoint detector, which tracks the joints of a person. Then, we use this keypoint model to analyze the positions of the hands and feet on a person performing a deadlift, and use geometric calculations to evaluate the accuracy of the lift.
+
 ## Examples
 
 <p align="center">
@@ -16,8 +19,6 @@
 
 ## Inspiration
 
-## What it does
-BackBuddy is a simple GUI application that takes an input video from a user, and passes it to an AI algorithm. This algorithm is a keypoint detector, which tracks the joints of a person. Then, we use this keypoint model to analyze the positions of the hands and feet on a person performing a deadlift, and use geometric calculations to evaluate the accuracy of the lift.
 ## How we built it
 First, we collected data for our keypoints algorithm, and for our final deadlift calculations. We did this by web scraping YouTube videos, using Supervisely to provide a label for each video, and then training a TensorFlow-MobileNetSlim model. While the model was training, we prepared our data further by splitting each video into separate frames, and augmented the data 4 times to create 17,694 individual JPG files in total. After this was done, we pulled keypoints from each of the videos, and created a function to calculate accuracy based on the foot keypoint coordinates and the feet keypoint coordinates.
 ## Challenges we ran into
