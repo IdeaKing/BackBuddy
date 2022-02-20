@@ -1,12 +1,18 @@
 # BackBuddy
 
-![BackBuddy](https://github.com/IdeaKing/BlairHacks/blob/main/docs/BackBuddyLogo.png)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/IdeaKing/BlairHacks/blob/main/docs/BackBuddyLogo.png">
+</p>
 
 ## Examples
 
-![BackBuddy Example 1](https://github.com/IdeaKing/BlairHacks/blob/main/docs/Figure_1.png)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/IdeaKing/BlairHacks/blob/main/docs/Figure_1.png">
+</p>
 
-![BackBuddy Example 2](https://github.com/IdeaKing/BlairHacks/blob/main/docs/Figure_2.png)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/IdeaKing/BlairHacks/blob/main/docs/Figure_2.png">
+</p>
 
 ## Inspiration
 
