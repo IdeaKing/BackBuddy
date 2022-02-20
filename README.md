@@ -1,6 +1,12 @@
 # BackBuddy
 
-![Back Buddyt](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![BackBuddy](https://github.com/IdeaKing/BlairHacks/blob/main/docs/BackBuddyLogo.png)
+
+## Examples
+
+![BackBuddy Example 1](https://github.com/IdeaKing/BlairHacks/blob/main/docs/Figure_1.png)
+
+![BackBuddy Example 2](https://github.com/IdeaKing/BlairHacks/blob/main/docs/Figure_2.png)
 
 ## Inspiration
 
