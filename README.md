@@ -5,7 +5,7 @@
 </p>
 
 ## What it does
-BackBuddy is a simple GUI application that takes an input video from a user, and passes it to an AI algorithm. This algorithm is a keypoint detector, which tracks the joints of a person. Then, we use this keypoint model to analyze the positions of the hands and feet on a person performing a deadlift, and use geometric calculations to evaluate the accuracy of the lift.
+BackBuddy is a simple GUI application that takes an input video from a user, and passes it to an AI algorithm to help teach properform during deadlifting. This algorithm is a keypoint detector, which tracks the joints of a person. Then, we use this keypoint model to analyze the positions of the hands and feet on a person performing a deadlift, and use geometric calculations to evaluate the accuracy of the lift.
 
 ## Using The GUI
 
