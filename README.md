@@ -7,6 +7,32 @@
 ## What it does
 BackBuddy is a simple GUI application that takes an input video from a user, and passes it to an AI algorithm. This algorithm is a keypoint detector, which tracks the joints of a person. Then, we use this keypoint model to analyze the positions of the hands and feet on a person performing a deadlift, and use geometric calculations to evaluate the accuracy of the lift.
 
+## Using The GUI
+
+Using the program is easy! Simply select your video and hit the "Start" button.
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/IdeaKing/BackBuddy/blob/main/docs/GUI.png">
+</p>
+
+## Installing BackBuddy
+
+1. Ensure Microsoft Visual C++ Build Tools is Installed 
+2. (Optional) Install GPU drivers from Nvidia (CUDA 11.2, cuDNN 8.1.0)
+3. Create Python Virtual Environment and Install Packages
+
+```Python
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+4. Run the program!
+
+```Python
+python main.py
+```
+
 ## Examples
 
 <p align="center">
@@ -51,6 +77,3 @@ At first, we attempted to create and design our own keypoints algorithm from scr
 ## What's next for BackBuddy
 
 For future goals, we want to implement live camera streaming to judge their level of deadlift. We have attempted to add a live camera, but due to the time restraint we were not able to successfully work it into our program. We also want to add logistic regression to rate the deadlift for a more accurate classification system to better the users deadlift to ensure the greatest level of safety for the athlete.
-
-## Using The GUI
-
